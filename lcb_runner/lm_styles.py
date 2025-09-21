@@ -33,6 +33,7 @@ class LMStyle(Enum):
     DeepSeekR1 = "DeepSeekR1"
 
     TogetherAI = "TogetherAI"
+    Qwen25Math = "Qwen25Math"
 
 
 @dataclass
@@ -657,6 +658,20 @@ LanguageModelList: list[LanguageModel] = [
         link="https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
     ),
     LanguageModel(
+        "PRIME-RL/Eurus-2-7B-SFT",
+        "Eurus-2-7B-SFT",
+        LMStyle.Qwen25Math,
+        datetime(2023, 1, 1),
+        link="https://huggingface.co/PRIME-RL/Eurus-2-7B-SFT",
+    ),
+    LanguageModel(
+        "PRIME-RL/Eurus-2-7B-PRIME",
+        "Eurus-2-7B-PRIME",
+        LMStyle.Qwen25Math,
+        datetime(2023, 1, 1),
+        link="https://huggingface.co/PRIME-RL/Eurus-2-7B-PRIME",
+    ),
+    LanguageModel(
         "Qwen/Qwen2.5-32B-Instruct",
         "Qwen2.5-Ins-32B",
         LMStyle.CodeQwenInstruct,
@@ -705,6 +720,27 @@ LanguageModelList: list[LanguageModel] = [
         LMStyle.CodeQwenInstruct,
         datetime(2024, 6, 30),
         link="https://huggingface.co/Qwen/Qwen3-235B-A22B",
+    ),
+     LanguageModel(
+        "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8",
+        "Qwen3-Coder-30B-A3B-Instruct-FP8",
+        LMStyle.CodeQwenInstruct,
+        datetime(2024, 6, 30),
+        link="https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8",
+    ),
+    LanguageModel(
+        "Qwen/Qwen3-4B-Thinking-2507",
+        "Qwen3-4B-Thinking-2507",
+        LMStyle.CodeQwenInstruct,
+        datetime(2024, 6, 30),
+        link="https://huggingface.co/Qwen/Qwen3-4B-Thinking-2507",
+    ),
+    LanguageModel(
+        "Qwen/Qwen3-4B-Instruct-2507",
+        "Qwen3-4B-Instruct-2507",
+        LMStyle.CodeQwenInstruct,
+        datetime(2024, 6, 30),
+        link="https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
     ),
     LanguageModel(
         "azerogpt",
@@ -881,6 +917,13 @@ LanguageModelList: list[LanguageModel] = [
         LMStyle.DeepSeekR1,
         datetime(2024, 4, 1),
         "https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
+    ),
+    LanguageModel(
+        "agentica-org/DeepCoder-1.5B-Preview",
+        "DeepCoder-1.5B-Preview",
+        LMStyle.DeepSeekR1,
+        datetime(2024, 4, 1),
+        "https://huggingface.co/agentica-org/DeepCoder-1.5B-Preview",
     ),
 ]
 

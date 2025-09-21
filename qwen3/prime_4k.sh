@@ -1,0 +1,1 @@
+python -m lcb_runner.runner.main --model PRIME-RL/Eurus-2-7B-PRIME --scenario codegeneration --evaluate --release_version v6 --max_tokens 4096 --tensor_parallel_size 4 --temperature 0.2

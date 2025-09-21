@@ -1,0 +1,1 @@
+VLLM_ATTENTION_BACKEND=FLASHINFER python -m lcb_runner.runner.main --model agentica-org/DeepCoder-14B-Preview --scenario codegeneration --evaluate --release_version v6 --max_tokens 32768 --tensor_parallel_size 4 --use_cache --kv_cache_quantized --temperature 0.6

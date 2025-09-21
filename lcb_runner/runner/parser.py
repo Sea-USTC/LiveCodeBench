@@ -131,7 +131,16 @@ def get_args():
         default=None,
         help="End date for the contest to filter the evaluation file (format - YYYY-MM-DD)",
     )
-
+    parser.add_argument(
+        "--kv_cache_quantized",
+        action="store_true",
+        help="fp8 quantized cache, need to pair with flashinfer",
+    )
+    parser.add_argument(
+        "--expert_parallel",
+        action="store_true",
+        help="to vllm --enable-expert-parallel",
+    )
     args = parser.parse_args()
 
     args.stop = args.stop.split(",") if args.stop else None # stop flag is default to None
