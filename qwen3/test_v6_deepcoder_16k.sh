@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m lcb_runner.runner.main --model agentica-org/DeepCoder-1.5B-Preview --scenario codegeneration --evaluate --release_version v6 --tensor_parallel_size 4 --temperature 0.6  --max_tokens 16384 --use_cache

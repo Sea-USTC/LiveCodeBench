@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=4,5,6,7 python -m lcb_runner.runner.main --model deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B --scenario codegeneration --evaluate --release_version v6 --tensor_parallel_size 4 --temperature 0.6  --max_tokens 16384 --use_cache

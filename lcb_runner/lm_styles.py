@@ -686,6 +686,20 @@ LanguageModelList: list[LanguageModel] = [
         link="https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct",
     ),
     LanguageModel(
+        "Qwen/Qwen3-4B-Thinking-2507",
+        "Qwen3-4B-Thinking-2507",
+        LMStyle.CodeQwenInstruct,
+        datetime(2024, 6, 30),
+        link="https://huggingface.co/Qwen/Qwen3-4B-Thinking-2507",
+    ),
+    LanguageModel(
+        "Qwen/Qwen3-4B-Instruct-2507",
+        "Qwen3-4B-Instruct-2507",
+        LMStyle.CodeQwenInstruct,
+        datetime(2024, 6, 30),
+        link="https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+    ),
+    LanguageModel(
         "Qwen/Qwen3-235B-A22B",
         "Qwen3-235B-A22B",
         LMStyle.CodeQwenInstruct,
@@ -741,6 +755,13 @@ LanguageModelList: list[LanguageModel] = [
         LMStyle.DeepSeekR1,
         datetime(2025, 1, 20),
         link="https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+    ),
+     LanguageModel(
+        "agentica-org/DeepCoder-1.5B-Preview",
+        "DeepCoder-1.5B-Preview",
+        LMStyle.DeepSeekR1,
+        datetime(2025, 1, 20),
+        link="https://huggingface.co/agentica-org/DeepCoder-1.5B-Preview",
     ),
     LanguageModel(
         "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",

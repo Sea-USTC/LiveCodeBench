@@ -23,6 +23,9 @@ class VLLMRunner(BaseRunner):
             disable_custom_all_reduce=True,
             enable_prefix_caching=args.enable_prefix_caching,
             trust_remote_code=args.trust_remote_code,
+            gpu_memory_utilization=0.9,
+            swap_space=6,
+            max_num_seqs=16,
         )
         self.sampling_params = SamplingParams(
             n=self.args.n,

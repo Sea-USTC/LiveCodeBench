@@ -1,0 +1,1 @@
+python -m lcb_runner.runner.main --model Qwen/Qwen3-4B-Thinking-2507 --scenario codegeneration --evaluate --release_version v6 --tensor_parallel_size 8 --temperature 0.6  --max_tokens 32768 --use_cache
