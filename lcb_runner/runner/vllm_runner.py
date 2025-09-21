@@ -23,6 +23,14 @@ class VLLMRunner(BaseRunner):
             disable_custom_all_reduce=True,
             enable_prefix_caching=args.enable_prefix_caching,
             trust_remote_code=args.trust_remote_code,
+            kv_cache_dtype='fp8' if args.kv_cache_quantized else "auto",
+            enable_expert_parallel=args.expert_parallel,
+            enable_chunked_prefill=True,
+            block_size=16,
+            gpu_memory_utilization=0.95,
+            swap_space=10,
+            # max_num_seqs=64,
+            max_num_batched_tokens=32768
         )
         self.sampling_params = SamplingParams(
             n=self.args.n,

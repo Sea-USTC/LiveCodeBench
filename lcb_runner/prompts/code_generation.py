@@ -11,6 +11,8 @@ from lcb_runner.benchmarks.code_generation import CodeGenerationProblem
 
 
 class PromptConstants:
+    SYSTEM_MESSAGE_o1 = "\nWhen tackling complex reasoning tasks, you have access to the following actions. Use them as needed to progress through your thought process.\n\n[ASSESS]\n\n[ADVANCE]\n\n[VERIFY]\n\n[SIMPLIFY]\n\n[SYNTHESIZE]\n\n[PIVOT]\n\n[OUTPUT]\n\nYou should strictly follow the format below:\n\n[ACTION NAME]\n\n# Your action step 1\n\n# Your action step 2\n\n# Your action step 3\n\n...\n\nNext action: [NEXT ACTION NAME]\n"
+    
     SYSTEM_MESSAGE_GENERIC = f"You are an expert Python programmer. You will be given a question (problem specification) and will generate a correct Python program that matches the specification and passes all tests."
 
     SYSTEM_MESSAGE_GEMINI = f"You are an expert Python programmer. You will be given a question (problem specification) and will generate a correct Python program that matches the specification and passes all tests. Do NOT use system calls like `exit` in the generated program. Ensure that the first code block contains the solution."
@@ -274,7 +276,35 @@ def format_prompt_generation(
             truncation=False,
             padding=False,
         )
+        
+    if LanguageModelStyle == LMStyle.Qwen25Math:
+        # SYSTEM_MESSAGE_o1
+        chat_messages = [
+            {
+                "role": "system",
+                "content": PromptConstants.SYSTEM_MESSAGE_o1,
+                # "content": PromptConstants.SYSTEM_MESSAGE_GENERIC,
+            },
+        ]
+        chat_messages += [
+            {
+                "role": "user",
+                "content": get_generic_question_template_answer(question) + "\n\nWrite Python code to solve the problem. Present the code in \n```python\nYour code\n```\nat the end.",
+            },
+        ]
+        from transformers import AutoTokenizer
 
+        tokenizer = AutoTokenizer.from_pretrained(
+            "Qwen/Qwen2.5-Math-7B-Instruct", padding_side="left", use_fast=False
+        )
+        return tokenizer.apply_chat_template(
+            chat_messages,
+            tokenize=False,
+            add_generation_prompt=True,
+            truncation=False,
+            padding=False,
+        )
+        
     if LanguageModelStyle == LMStyle.Claude:
         prompt = f"{HUMAN_PROMPT}\n"
         prompt += f"{PromptConstants.SYSTEM_MESSAGE_GENERIC}\n\n"
