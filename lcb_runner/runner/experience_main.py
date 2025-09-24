@@ -19,6 +19,7 @@ from datasets import load_dataset
 def get_codeqwen_question_template_answer(question: CodeGenerationProblem):
     prompt = "You will be given a question (problem specification) and will generate a correct Python program that matches the specification and passes all tests. You will NOT return anything except for the program.\n\n"
     prompt += f"Question: {question.question_content}\n\n"
+    # prompt +=  question.experience
     if question.starter_code:
         prompt += f"You will use the following starter code to write the solution to the problem and enclose your code within delimiters.\n"
         prompt += f"```python\n{question.starter_code}\n```\n\n<|im_end|>\n"
@@ -45,11 +46,16 @@ def format_prompt_generation(
 
 def load_code_generation_dataset(release_version="release_v1") -> list[CodeGenerationProblem]:
     dataset = load_dataset("livecodebench/code_generation_lite", split="test", revision='refs/pr/7', name=release_version)
-    dataset = [CodeGenerationProblem(**p) for p in dataset[1]]  # type: ignore
-    dataset[0].experience=("Dynamic Programming Code Generation Reminder:"
-                            "When generating DP code, pay special attention to these common oversights:"
-                            "State transition completeness: Ensure you consider ALL possible previous states that can contribute to the current state. Think carefully about the relationship between the current round of state updates and the previous round."
-                            "Conditional logic accuracy: When translating the thought process into code, be careful with if-else statement nesting and branching logic to ensure each subcase follows the correct conditional path. ")
+    dataset = [CodeGenerationProblem(**p) for p in dataset]  # type: ignore
+    dataset = [problem for problem in dataset if problem.question_title == "maximum-amount-of-money-robot-can-earn"]
+    # dataset[0].experience=("<experience>\nDynamic Programming Code Generation Reminder:"
+    #                         "When generating DP code, pay special attention to these common oversights:"
+    #                         "State transition completeness: Ensure you consider ALL possible previous states that can contribute to the current state. If you update k+1 at k, please avoid overwrite k+1 at k+1."
+    #                         "Conditional logic accuracy: When translating the thought process into code, be careful with if-else statement nesting and branching logic. Ensure each subcase follows the correct conditional path."
+    #                         "Initialization: Every state that cannot be arrived from other states should be properly assigned an initial value."
+    #                         "When you think step by step, regularly check the newly modified code to obey the rules above.\n</experience>\n<think>\n")
+    # dataset[0].experience=("Follow the Dynamic Programming Code Regulations.")
+    dataset[0].experience=("<think>\n")
     print(f"Loaded {len(dataset)} problems")
     return dataset
 
@@ -62,8 +68,6 @@ def build_prompt_benchmark(
 ]:
     benchmark = load_code_generation_dataset(
             args.release_version,
-            start_date=args.start_date,
-            end_date=args.end_date
         )
     benchmark = sorted(benchmark, key=lambda x: x.question_id)
     format_prompt = format_prompt_generation
@@ -84,7 +88,7 @@ def combine_results(
     combined_results = [
         (
             outputs_list,
-            [extract_code(output, model.model_style) for output in outputs_list],
+            [extract_code(output) for output in outputs_list],
         )
         for outputs_list in results
     ]

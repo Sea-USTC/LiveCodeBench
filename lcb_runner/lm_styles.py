@@ -729,18 +729,18 @@ LanguageModelList: list[LanguageModel] = [
         link="https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8",
     ),
     LanguageModel(
-        "Qwen/Qwen3-4B-Thinking-2507",
-        "Qwen3-4B-Thinking-2507",
+        "Qwen/Qwen3-30B-A3B-Thinking-2507",
+        "Qwen3-30B-A3B-Thinking-2507",
         LMStyle.CodeQwenInstruct,
         datetime(2024, 6, 30),
-        link="https://huggingface.co/Qwen/Qwen3-4B-Thinking-2507",
+        link="https://huggingface.co/Qwen/Qwen3-30B-A3B-Thinking-2507"
     ),
     LanguageModel(
-        "Qwen/Qwen3-4B-Instruct-2507",
-        "Qwen3-4B-Instruct-2507",
+        "Qwen/Qwen3-30B-A3B-Thinking-2507-FP8",
+        "Qwen3-30B-A3B-Thinking-2507-FP8",
         LMStyle.CodeQwenInstruct,
         datetime(2024, 6, 30),
-        link="https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+        link="https://huggingface.co/Qwen/Qwen3-30B-A3B-Thinking-2507-FP8"
     ),
     LanguageModel(
         "azerogpt",

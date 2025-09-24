@@ -1,1 +1,0 @@
-VLLM_ATTENTION_BACKEND=FLASHINFER python -m myexp.main --model Qwen/Qwen3-4B-Thinking-2507 --scenario codegeneration --evaluate --release_version v6 --max_tokens 32768 --tensor_parallel_size 4 --kv_cache_quantized --temperature 0.6 --n 50

@@ -1,0 +1,1 @@
+CUDA_LAUNCH_BLOCKING=1 VLLM_ATTENTION_BACKEND=FLASHINFER python -m lcb_runner.runner.experience_main --model Qwen/Qwen3-30B-A3B-Thinking-2507-FP8 --scenario codegeneration --evaluate --release_version v6 --max_tokens 32768 --expert_parallel --tensor_parallel_size 4 --kv_cache_quantized --temperature 0.6 --n 50 --top_p 0.8
